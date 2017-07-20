@@ -64,14 +64,14 @@ console.log(sentence.substr(2, 8));
 
 //Al numbers are floating point values in JS
 
-/*
+
 var integer = 1;
 var float = 1.0;
 console.log(integer == float);
 true
-*/
 
-/*var number1 = 123;
+
+var number1 = 123;
 var number2 = number1;
 
 console.log(number1);
@@ -81,7 +81,7 @@ number2 = 456;
 
 console.log(number1);
 console.log(number2);
-*/
+
 
 //parseInt() - pull out the integer value, or whole number value from a floating point variable number
 //parseFloat() pull out the floating value of a number to assert...
@@ -93,7 +93,7 @@ console.log(number2);
 // console.log(parseInt(example, 10));
 //passing 10 ensures it is processed in base10. if you dont pass the 10 it might process in another base
 
-/*
+
 var example = 5.5;
 
 console.log(parseInt(example, 10));
@@ -110,11 +110,11 @@ console.log(example.toFixed(2));
 
 console.log(example.toPrecision(3));
 //"5.50" presents 3 digits total
-*/
+
 
 //Booleans
 
-/*
+
 var value1 = 1;
 var value2 = 2;
 
@@ -171,13 +171,13 @@ console.log(less);
 console.log(notEqual);
 //true
 
-*/
+
 
 //reference types
 
 //array
 
-/*arrays for sequential values
+arrays for sequential values
 
 var words = ['This', 'is', 'an', 'array'];
 console.log(words);
@@ -193,7 +193,7 @@ words2[0] = 'That';
 console.log(words1);
 console.log(words2);
 
-/*
+
 console output
 
 ["This", "is", "an", "array"]
@@ -219,9 +219,6 @@ console.log(typeof(things[2]));
 console.log(typeof(things[3]));
 //"boolean"
 
-
-*/
-
 //Accessors Return Values
 
 // length
@@ -235,57 +232,57 @@ console.log(typeof(things[3]));
 // push()
 // pop()
 
-// var words = ['these', 'are', 'some', 'words'];
+var words = ['these', 'are', 'some', 'words'];
 
-// console.log(words.length);
-
-// console.log(words.reverse());
-
-// console.log(words.sort());
-
-// console.log(words.toString());
-
-// console.log(words.join(" # "));
-
-// console.log(words.push('augmented'));
-
-// console.log(words.pop());
-
-// console.log(words);
-
+console.log(words.length);
 // 4
+console.log(words.reverse());
 // ["words", "some", "are", "these"]
+
+console.log(words.sort());
 // ["are", "some", "these", "words"]
+
+console.log(words.toString());
 // "are,some,these,words"
+
+console.log(words.join(" # "));
 // "are # some # these # words"
+
+console.log(words.push('augmented'));
 // 5
+
+console.log(words.pop());
 // "augmented"
+
+console.log(words);
 // ["are", "some", "these", "words"]
+
 
 // OBJECTS
 
-// var toy;
+var toy;
 
-// toy = {
-// 	"color": "red",
-// 	"size": 5,
-// 	"soft": true
-// };
+toy = {
+	"color": "red",
+	"size": 5,
+	"soft": true
+};
 
-// console.log(toy);
-
-// console.log(toy["color"]);
-
-// console.log(toy.color);
-
-// OUTPUT
+console.log(toy);
 // [object Object] {
 //   color: "red",
 //   size: 5,
 //   soft: true
 // }
+console.log(toy["color"]);
 // "red"
+
+console.log(toy.color);
 // "red"
+
+
+//OUTPUT
+
 
 //  var toy = {};
 
@@ -315,3 +312,480 @@ console.log(typeof(things[3]));
 //Incrementary/Unary
 // Multiply/Divide/Modulus
 // Add/Subtract
+
+// var myObject = {
+//   'color': 'red',
+//   'size': 5
+// };
+
+// var newObject = myObject;
+
+// console.log(myObject.color);
+// console.log(newObject.color);
+
+// newObject.color = 'blue';
+
+// console.log(myObject.color);
+// console.log(newObject.color);
+
+// var myObject = {
+//   'color': 'red',
+//   'size': 5
+// };
+
+// var newObject = myObject;
+
+// console.log(myObject.color);
+// console.log(newObject.color);
+
+// newObject.color = 'blue';
+
+// console.log(myObject.color);
+// console.log(newObject.color);
+
+// var firstNumber = 4;
+// var secondNumber = 1000;
+// var word = 'hello';
+
+// firstNumber += secondNumber;
+// += both adds and assigns at the same time.
+// so the value of firstNunber is now 1004
+
+// -= both subtracts and assigns at the same time
+
+console.log(firstNumber);
+
+var arr1 = [1, 2];
+var arr2 = [1, 2];
+var obj1 = {
+  'color': 'red'
+};
+var obj2 = {
+  'color': 'red'
+};
+
+console.log(arr1 == arr1);
+//true
+console.log(arr1 == [1, 2]);
+//false
+console.log(arr1 == arr2);
+//false
+
+arr2 = arr1;
+
+console.log(arr1 == arr2);
+//true
+
+console.log(obj1 == obj1);
+//true
+console.log(obj1 == {'color': 'red'});
+//false
+console.log(obj1 == obj2);
+//false
+
+obj2 = obj1;
+console.log(obj1 == obj2);
+//true
+
+var aNumber = 5;
+var aString = '5';
+var truth = true;
+var falsehood = false;
+var anObject = {
+  'color': 'red'
+};
+
+console.log(aNumber == aString);
+//true, two were coerced to be the same variable type.
+//the string could be converted into a number, it was
+//possible to say the values avcutally matched
+
+console.log(truth == 1);
+//true, 1 = true, 0 = false
+
+console.log(falsehood == 0);
+//true
+
+console.log(anObject.toString());
+//[object Object]
+
+console.log('[object Object]' == anObject);
+//true
+
+var aNumber = 5;
+var aString = '5';
+
+console.log(aNumber == aString);
+//true
+console.log(aNumber === aString);
+//false
+
+var firstNumber = 5;
+var secondNumber = 10;
+var numberString = '5';
+var firstWord = 'Hello';
+var secondWord = 'World';
+
+console.log(firstNumber != secondNumber);
+//true
+console.log(firstNumber != 5);
+//false
+console.log(firstNumber != numberString);
+//false
+console.log(firstNumber !== numberString);
+//true useing EXACT match
+console.log(firstWord != secondWord);
+//true
+console.log(firstWord != 'Hello');
+//false
+var firstNumber = 5;
+var secondNumber = 10;
+var numberString = '5';
+
+console.log(firstNumber > secondNumber);
+//false
+console.log(firstNumber < secondNumber);
+//true
+console.log(firstNumber >= 5);
+//true
+console.log(firstNumber <= numberString);
+//true
+
+var firstWord = 'Hello';
+var secondWord = 'World';
+var thirdWord = 'hello';
+var fourthWord = 'help';
+
+console.log(firstWord > secondWord);
+//false
+console.log(firstWord < secondWord);
+//true
+console.log(firstWord >= 'Hello');
+//true
+console.log(firstWord > thirdWord);
+//false
+console.log(firstWord < thirdWord);
+//true
+console.log(thirdWord > fourthWord);
+//false. 'hell' is higher in the alphabet than 'help'
+
+//AND OPERATOR
+
+var truth = true;
+var falsehood = false;
+var firstWord = 'Hello';
+var secondWord = 'World';
+
+console.log(truth && truth);
+//true
+console.log(truth && falsehood);
+//false. any value in a comparison separated by ampersands returns false, then the
+//return value will always be false
+console.log((3 < 4) && ('Apple' < 'Banana'));
+//true
+console.log(firstWord && secondWord);
+//'World'. you get the last true value that is not a boolean of the true statement.
+//this means true
+console.log(secondWord && firstWord);
+//'Hello'
+
+//OR OPERATOR
+
+var truth = true;
+var falsehood = false;
+var firstWord = 'Hello';
+var secondWord = 'World';
+
+console.log(falsehood || falsehood);
+//false. if either falsehood or falsehood is true. return true.
+//falsehood and falsehood are false. returns false.
+console.log(truth || falsehood);
+//true. if either truth or falsehood is true. return true.
+console.log((3 < 4) || ('Banana' > 'Apple'));
+//true
+console.log(firstWord || secondWord);
+//'Hello'. returns the first true value thats encountered
+console.log(secondWord || firstWord);
+//'World
+
+//NOT OPERATOR
+
+var truth = true;
+var falsehood = false;
+
+console.log(!truth);
+//false
+console.log(!falsehood);
+//true
+console.log(!(3 < 4));
+//false
+console.log(!(3 < 4) || !('Banana' < 'Apple'));
+//true
+
+//Logical Not For Primitive Variables
+//The boolean value of any non-empty and non-zero String or Number with Not is false
+//The boolean value of an empty string, a zero value, or a null or undefined variable with Not
+//is true
+
+var word = 'Hello';
+var empty = '';
+var negative = -10;
+var zero = 0;
+var nullValue = null;
+var notDefined;
+
+console.log(!word);
+//false
+console.log(!empty);
+//true
+console.log(!negative);
+//false
+console.log(!zero);
+//true
+console.log(!nullValue);
+//true
+console.log(!notDefined);
+//true
+
+console.log(!!word);
+//true
+console.log(!!empty);
+//false
+console.log(!!negative);
+//true
+console.log(!!zero);
+//false
+console.log(!!nullValue);
+//false
+console.log(!!notDefined);
+//false
+
+var truth = true;
+var falsehood = false;
+
+console.log(truth && truth && truth);
+//true
+console.log(truth && falsehood && truth);
+//false
+console.log(truth || falsehood || truth);
+//true
+console.log(truth && falsehood || truth);
+//truth
+console.log(truth || falsehood && truth);
+//true
+console.log(truth || falsehood && falsehood);
+//true
+console.log(truth && falsehood || falsehood);
+//false
+
+//BLOCK STATEMENTS
+//statements are a set of instructions that tells the computer how to perform an action
+//usually begins with a keyword or variable
+//always ends with a semicolon
+//executed sequentially ((for the most part))
+//may be grouped in a block with curly braces
+
+//Why group statements?
+//programs may need to do the same set of steps over and over
+
+//BLOCK STATEMENTS FOR ITERATION
+//group statements to be repeated in blocks
+//use control flow statements to execute them
+
+//PSEUDO CODE
+var colors = ['red', 'green', 'blue'];
+var question;
+
+FOR EACH COLOR IN COLORS {
+	question = 'Do you like ' + colors[THE CURRENT COLOR] + '?';
+	console.log(question);
+	//  'Do you like red?' (first time)
+	//  'Do you like green?' (second time)
+	//  'Do you like blue?' (third time)
+}
+
+//BLOCK STATEMENTS FOR CONDITIONS
+//only execute a block if a condition is true
+
+var color = ['red', 'green', 'blue'];
+var selection = 0;
+
+console.log("You chose " + colors[selection]);
+// 'You chose red'
+
+//PSEUDO CODE
+IF THE SELECTION IS RED {
+		console.log('Just like the Red Lanterns')
+	} OTHERWISE, IF THE SELECTION IS GREEN {
+		console.log('Just like the Green Lanterns')
+	} OTHERWISE, IF THE SELECTION IS BLUE {
+		console.log('Just like the Blue Lanterns')
+	} OTHERWISE {
+		console.log('whatever...')
+	}
+}
+
+//BOOLEAN CONDITIONS
+//testing the boolean state of an expression to decide whether to execute a block of code
+
+var color = prompt('red, green or blue?')
+
+color = color.toLowerCase();
+
+console.log('You chose ' + color);
+
+if (color == 'blue') {
+  console.log('Blue Lanterns');
+} else if (color == 'red') {
+  console.log('Red Lanterns');
+} else if (color == 'green') {
+  console.log('Green Lanterns')
+} else {
+  console.log('thats not what I asked...')
+}
+
+console.log(color.toLowerCase());
+
+//FOR LOOPS
+
+//Pseudo code for itereation
+
+var color = ['red', 'green', 'blue'];
+var question;
+
+FOR EACH COLOR IN COLORS {
+	question = 'Do you like ' + colors[THE CURRENT COLOR] + '?';
+	console.log(question);
+	//  'Do you like red?' (first time)
+	//  'Do you like green?' (second time)
+	//  'Do you like blue?' (third time)
+}
+
+//FOUR ELEMENTS OF A STATEMENT
+
+//initial condition
+//final condition
+//itereator
+//block of code to execute
+
+var colors = ['red', 'green', 'blue'];
+var question;
+var counter;
+
+//counter starts at 0, and needs to be LESS THAN the length of the array ' colors',
+//the counter will continue to each next item as long as there is one to move to
+for (counter = 0; counter < colors.length; counter++) {
+  question = 'Do you like ' + colors[counter] + '?';
+  //every iteration changes the value of 'counter' until its greater than the length of
+  //the array
+  console.log(question);
+  //"Do you like red?"
+  //"Do you like green?"
+  //"Do you like blue?"
+}
+
+//TERMINAL CONDITIONS
+
+//how does the loop know when its done?
+
+//counter < colors.length;
+//as long as the value returned by the terminal condition
+//is true, the loop will continue executing. once that value
+//returns false, the loop stops executing and continues on to whatever is passed into the code
+
+//ITERATION
+//what changes during each loop to move the process forward?
+
+//counter++
+// the iteration part of a for loop tells what changes between
+//each loop in order to move the process forward. in the iterator you
+//can change anything you'd like.
+
+//BREAK OUT OF A FOR LOOP
+//use a break statement to interupt the loop before the terminal condition
+
+var counter = 0;
+
+for (;;) { //super not good, dont use this ever, or use it with a break statement
+  console.log('This could go on forever ' + counter) ;
+  if (counter++ > 99) {
+    break;
+    // this tells the computer to break out of this loop when the counter gets to 100
+  }
+}
+
+//MULTIPLE  POSSIBLE OUTCOMES
+//a pattern of if and else statements to test a single expression
+
+var color = 'blue';
+
+switch (color) {
+  case 'blue':
+    console.log('Blue Lanterns');
+    break;
+  case 'red':
+    console.log('Red Lanterns');
+    break;
+  default:
+    console.log('ok then...');
+}
+
+var compliment;
+var adjectives = [];
+var adjectiveCount = 4 ;
+
+switch(adjectiveCount) {
+  case 4:
+    adjectives.push('exquisite');
+  case 3:
+    adjectives.push('fantastic');
+  case 2:
+    adjectives.push('amazing');
+  default:
+    adjectives.push('great');
+}
+
+compliment = 'You have ' + adjectives.join(', ') + ' taste!';
+
+console.log(compliment);
+
+//FOR IN STATEMENT
+
+var toy = {
+  'color': 'red',
+  'size': 'large',
+  'shape': 'round'
+};
+
+var toyProperties = Object.keys(toy);
+console.log(toyProperties);
+var counter;
+var style;
+
+for (counter = 0; counter < toyProperties.length; counter++) {
+  style = toyProperties[counter];
+  console.log('The ' + style + ' is ' + toy[style] + '.');
+}
+
+//outputting the style: color, size, shape
+
+//FOR IN SYNTAX FOR OBJECT PROPERTIES
+
+//the For...in iterator loops through each property, assigning the property name to the variable
+
+var toy = {
+  'color': 'red',
+  'size': 'large',
+  'shape': 'round'
+};
+
+for (style in toy) {
+  console.log('The ' + style + ' is ' + toy[style] + '.');
+}
+
+//style is being assigned to a different key in the toy object each time it goes through the loop.
+//Using that key to pull out the name of the key and then the value stored inside that key
+
+//DONT USE THE DOT SYNTAX IN LOOPS
+//the dot syntax will not recognize the variable as a property. it will look for a name
+
