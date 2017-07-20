@@ -789,3 +789,217 @@ for (style in toy) {
 //DONT USE THE DOT SYNTAX IN LOOPS
 //the dot syntax will not recognize the variable as a property. it will look for a name
 
+//CALLING A BLOCK OF CODE
+
+//iterators loop over blocks of code
+//flow control branches to blocks of code
+
+//FUNCTIONS
+
+//by giving a block of code a name, you can call it whenever you want to; like creating a new keyword just for your code
+
+function sayHi() {
+  console.log('Hi');
+}
+
+sayHi();
+
+//DECLARING AND USING FUNCTION
+
+//can be defined after code that uses them
+//can use and change variables that existed when the function was defined...be careful
+
+var color;
+
+console.log(color);
+//undefined
+changeColor();
+console.log(color);
+//green
+changeColor();
+console.log(color);
+//red
+changeColor();
+console.log(color);
+//blue
+
+function changeColor() {
+  switch(color) {
+    case 'red':
+      color = 'blue';
+      break;
+    case 'green':
+      color = 'red';
+      break;
+    default:
+      color = 'green';
+  }
+}
+
+//THE RESULT OF CALLING A FUNCTION
+
+//without parenthesis, code of the function is returned
+//with parenthesis, function is executed
+//return value of a function is undefined unless specified
+
+var color;
+
+console.log(changeColor());
+//undefined
+console.log(color);
+//green
+
+
+function changeColor() {
+  switch(color) {
+    case 'red':
+      color = 'blue';
+      break;
+    case 'green':
+      color = 'red';
+      break;
+    default:
+      color = 'green';
+  }
+}
+
+//SPECIFYING A RETURN VALUE
+
+//only one return value for each execution
+//must return a value or the result will return undefined
+
+var color;
+
+console.log(changeColor());
+//undefined
+console.log(color);
+//green
+changeColor();
+console.log(color);
+//red
+
+function changeColor() {
+  switch(color) {
+    case 'red':
+      color = 'blue';
+      break;
+    case 'green':
+      color = 'red';
+      break;
+    default:
+      color = 'green';
+  }
+  return(color);
+}
+
+var color;
+
+console.log(color);
+//undefined
+color = changeColor();
+console.log(color);
+//green
+color = changeColor();
+console.log(color);
+//red
+
+function changeColor() {
+  switch(color) {
+    case 'red':
+      return 'blue';
+    case 'green':
+      return 'red';
+    default:
+      return 'green';
+  }
+  console.log('nothing will be shown');
+}
+
+changeColor();
+console.log(changeColor());
+//blue
+
+//FUNCTION ARGUMENTS
+//passing arguments to functions
+
+//variables to be used by a function can be passed as arguments between parenthesis
+
+var color = 'red';
+
+function showItem(item) {
+  console.log(item);
+}
+
+showItem(color);
+//red
+
+//PASS MULTIPLE NAMED ARGUMENTS
+//arguments can be any type. refer to them by parameter name when defining the function
+
+var word = 'Hello';
+var fontanimals = ['Kevin', 'Meghan', 'Eli', 'Jakey'];
+
+function greeter(str, arr) {
+  var counter;
+  for(counter = 0; counter < arr.length; counter++) {
+    console.log(str + ' ' + arr[counter]);
+  }
+}
+
+greeter(word, fontanimals)
+// "Hello Kevin"
+// "Hello Meghan"
+// "Hello Eli"
+// "Hello Jakey"
+
+//DESIGN AND NAME FOR REUSE
+
+//functions should be
+//flexible
+//reusable
+//independent
+
+//name functions to support flexible application
+
+var word = 'Hello';
+var fontanimals = ['Kevin', 'Meghan', 'Eli', 'Jakey'];
+var salutation = 'Goodbye'
+var target = ['Sun', 'Moon'];
+
+
+function greeter(str, arr) {
+  var counter;
+  for(counter = 0; counter < arr.length; counter++) {
+    console.log(str + ' ' + arr[counter]);
+  }
+}
+
+greeter(word, fontanimals);
+greeter(salutation, target);
+//"Goodbye Sun"
+//"Goodbye Moon"
+greeter(word, target);
+//"Hello Sun"
+//"Hello Moon"
+
+//FUNCTIONS CALLING FUNCTIONS
+
+var testString = 'hello world';
+console.log(titleCase(testString));
+
+function titleCase(str) {
+  var strArray = str.split(' ')
+  var counter;
+  for (counter = 0; counter < strArray.length; counter++) {
+    strArray[counter] = capitalize(strArray[counter]);
+  }
+  return strArray.join(' ');
+}
+
+function capitalize(str) {
+  var result = [];
+  result[0] = str.charAt(0).toUpperCase();
+  result[1] = str.substring(1);
+  return result.join('')
+}
+//Hello World
