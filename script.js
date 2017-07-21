@@ -1003,3 +1003,119 @@ function capitalize(str) {
   return result.join('')
 }
 //Hello World
+
+//SCOPE
+
+var word = 'Hello';
+var fontanimals = ['Kevin', 'Meghan', 'Eli', 'Jakey'];
+
+function greeter(str, arr) {
+  var counter;
+  for(counter = 0; counter < arr.length; counter++) {
+    console.log(str + ' ' + arr[counter]);
+  }
+  console.log(counter);
+  //this works inside the scope of the function
+}
+
+greeter(word, fontanimals);
+console.log(counter);
+//"error"
+//"ReferenceError: counter is not defined
+//    at soxicowoma.js:15:38
+//    at https://static.jsbin.com/js/prod/runner-4.0.4.min.js:1:13850
+//    at https://static.jsbin.com/js/prod/runner-4.0.4.min.js:1:10792"
+// counter is not a variable OUTSIDE the scope of the function
+
+function example() {
+  var local = 'Only available inside example()'; // with var
+  global = 'Available anywhere once example() has been executed'; //without var
+};
+
+
+console.log(global);
+// "error" (ReferenceError: local is not defined)
+
+console.log(local);
+// "error" (ReferenceError: local is not defined)
+
+example();
+
+console.log(local);
+// "error" (ReferenceError: local is not defined)
+
+console.log(global);
+// "Also available any where
+
+// Variable Scope is inherited One Way
+//Functions inherit variables in the oparent scope
+
+//BE SAFE: DECLARE VARIABLES FIRST
+
+//Javascript hoists the variable declarations to the top of a scope.
+
+//start each function or script by declaring any variables used
+
+function predefined() {
+  var before = 5; // declared and initialized
+  var after = 10; // declared and initialized
+  console.log(before + after);
+}
+
+function undefinedAfter() {
+  var before = 5; // declared and initialized
+  console.log(before + after);
+  var after = 10; // initialized, declaration hoisted
+}
+
+function undeclaredAfter() {
+  var before = 5; // declared and initialized
+  console.log(before + after);
+}
+
+predefined();
+// 15
+
+undefinedAfter();
+// NaN
+
+undeclaredAfter();
+// error: ReferenceError: after is not defined
+
+//GLOBAL SCOPE
+
+// all scripts share space in a global object. (window in browsers, global on the server)
+var count = 5;
+
+console.log(count);
+// 5
+console.log(window.count);
+// 5
+window.count = 10;
+
+console.log(count);
+// 10
+
+// WHATS WRONG WITH GLOBAL SCOPE?
+//different parts of the coe may reuse a common variable name (no matter how careful you think you're being).
+
+//one script that uses a counter
+var count = 5;
+
+// another script that sets count based on a price
+function thousands(price) {
+  count = 1000 * price;
+  return count;
+}
+
+// another script that uses count for an iterator
+for (count = 0; count < 6; count++) {
+  // do something
+}
+
+thousands(50);
+
+//a bunch of code later....
+
+console.log(count);
+// could be anything
