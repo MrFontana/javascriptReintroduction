@@ -1119,3 +1119,236 @@ thousands(50);
 
 console.log(count);
 // could be anything
+
+//WAYS TO ISOLATE VARIABLE SCOPE
+
+//KEEP LOCAL VARIABLES OUT OF THE GLOBAL OBJECT
+//functions - declaring them inside functions
+//IIFE - wrap all of your code inside of an imediately invoked function expression
+//custom objects - write your code inside of custom objevts that contain all of the methods youre going to be using and encapsulate them that way
+
+// local to a function
+function thousands(price) {
+  var count = 1000 * price;
+}
+
+//immediately invoked function expressions
+(function() { // start a function expression
+  var count;
+  for (count = 0; count < 10; count++) {
+    //do something 10 times
+  }
+}()); // execute that function expression
+
+// local to a private object (less safe)
+var myApp = {};
+myApp.count = 'Hello'.length;
+
+console.log(count);
+// error: ReferenceError: count is not defined
+
+//FUNCTIONS IN THE GLOBAL SCOPE
+
+//when you declare a function, you add it to the global scope
+
+function greeter(str, arr) {
+	var counter;
+	for (counter = 0; counter < arr.length; counter++) {
+		console.log(str + ' ' + arr[counter]);
+	}
+}
+
+console.log(window.greeter);
+// the code of the function greeter
+
+window.greeter('Hello', ['Fred', 'Judy']);
+// Hello Fred
+// Hello Judy
+
+//PROTECTING THE GLOBAL SCOPE
+//all the tricks for protecting the global scope of variables apply to functions
+
+(function () {
+  function greeter(str, arr) {
+	var counter;
+	for (counter = 0; counter < arr.length; counter++) {
+		console.log(str + ' ' + arr[counter]);
+      }
+  }
+
+  greeter('Hello', ['Fred', 'Judy']);
+  // Hello Fred
+  // Hello Judy
+}());
+
+console.log(window.greeter);
+//undefined
+
+window.greeter('Hello', ['Fred', 'Judy']);
+// error TypeError: window.greeter is not a function
+
+//FUNCTIONS DECALRED IN FUNCTIONS
+
+//a function can declare local functions, with their own local scope
+
+//PASSING FUNCTIONS TO FUNCTIONS
+
+//a function can take an anonymous function, declared inline with or without a name, as an argument
+
+(function () {
+  function greeter(str, arr, display) {
+	var counter;
+    var phrase;
+	for (counter = 0; counter < arr.length; counter++) {
+      phrase = str + ' ' + arr[counter];
+      console.log(display(phrase));
+      }
+  }
+
+  greeter('Hello', ['Fred', 'Judy'], function(str) {
+  	return str;
+  });
+  // Hello Fred
+  // Hello Judy
+
+  greeter('Hello', ['Fred', 'Judy'], function(str) {
+  	return str.toUpperCase() + '!!!!!';
+  });
+  // HELLO FRED!!!!!
+  // HELLO JUDY!!!!!
+
+}());
+
+//ASSIGNING FUNCTIONS TO VARIABLES
+
+//an anonymous functions can also be assigned to a variable, just like any other value
+
+(function () {
+  var greeter = function(str, arr) {
+	var counter;
+    var phrase;
+	for (counter = 0; counter < arr.length; counter++) {
+      phrase = str + ' ' + arr[counter];
+      console.log(phrase);
+      }
+  };
+
+  greeter('Hello', ['Fred', 'Judy']);
+
+}());
+
+//PASSING FUNCTIONS AS VARIABLES
+// you can pass a function to another function as a variable for cleaner, more modular code
+
+var greeter = function(str, arr, display) {
+  var counter;
+  var phrase;
+  for (counter = 0; counter < arr.length; counter++) {
+    phrase = str + ' ' + arr[counter];
+    console.log(display(phrase));
+  }
+};
+
+var say = function(str) {
+  return str;
+};
+
+var shout = function(str) {
+  return str.toUpperCase() + '!!!';
+};
+
+greeter('Hello', ['Fred', 'Judy'], say);
+// "Hello Fred"
+// "Hello Judy"
+greeter('Hello', ['Fred', 'Judy'], shout);
+// "HELLO FRED!!!"
+// "HELLO JUDY!!!"
+
+//by creadting small named functions to variables you can create very reusable code
+
+//FUNCTIONS TO CONSTRUCT OBJECTS
+
+//functions can also be used as object templates, with the new statement
+//first letter of constuctor functions should always be CAPITALIZED
+var Example = function(str) {
+  this.name = str;
+};
+
+var exampleFred = new Example('Fred');
+
+var exampleJudy = new Example('Judy')
+
+console.log(exampleFred);
+// [object Object] {
+//   name: "Fred"
+// }
+
+console.log(exampleFred.name);
+// "Fred"
+
+console.log(exampleJudy.name);
+// "Judy"
+
+// ADDING METHODS TO CONSTRUCTORS
+//properties and methods assigned to this in a constructors are public
+
+var Example = function(str) {
+  this.name = str;
+  this.greet = function() {
+    return 'Hello ' + this.name;
+  };
+};
+
+var exampleFred = new Example('Fred');
+var exampleJudy = new Example('Judy')
+
+console.log(exampleFred.greet());
+// "Hello Fred"
+
+console.log(exampleJudy.greet());
+// "Hello Judy"
+
+//PRIVATE AND PUBLIC PROPERTIES
+//variables declared with var in a constructor are private to child objects and their functions
+
+var Example = function(str) {
+  var special = 'Judy';
+  this.name = str;
+  this.greet = function() {
+    if (this.name === special) {
+      return 'HEY WUDDUP JUDES!?';
+    } else {
+      return 'Hello ' + this.name;
+    }
+  };
+};
+
+var exampleFred = new Example('Fred');
+var exampleJudy = new Example('Judy')
+
+console.log(exampleFred.greet());
+// "Hello Fred"
+console.log(exampleJudy.greet());
+// "HEY WUDDUP JUDES!?"
+
+//challenge word puzzle
+
+//template: I like [verb]. My favorite [noun] is [adjective] [noun]. That's what makes me [adjective].
+
+// function wordParty(str1, str2, str3, str4, str5) {
+// 	return 'I like ' + str1 + '. My favorite ' + str2 + ' is ' + str3 + ' ' + str4 + '. That\'s what makes me ' + str5;
+// }
+
+// wordParty('gaming', 'game', 'fluffy', 'dark souls', 'really angry');
+
+function wordParty(verb, noun, adjective, noun2, adjective2) {
+	var verb = prompt('enter a verb');
+	var noun = prompt('enter a noun');
+	var adjective = prompt('enter an adjective');
+	var noun2 = prompt('enter another noun');
+	var adjective2 = prompt('enter another adjective');
+
+    return alert('I like ' + verb + '. My favorite ' + noun + ' is ' + adjective + ' ' + noun2 + '. Thats what makes me ' + adjective2);
+};
+
+console.log(wordParty());
