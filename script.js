@@ -1352,3 +1352,76 @@ function wordParty(verb, noun, adjective, noun2, adjective2) {
 };
 
 console.log(wordParty());
+
+//WHAT IS A REGULAR EXPRESSION?
+//Describing patterns in strings
+
+//regular expressions let you describe patterns in a string using a language syntax that is common to javascript and a number of other languages
+
+//A source string to scan for matching patterns:
+	// "The kittens have mittens"
+	// reg ex: /it/ would match the string looking for 'it' in the string
+
+//WHY USE REG EX?
+//recognizing and dealing with patterns in strings can be complex. For example, let's validate that a string contains a telephone number formatted as 123-4567
+
+//WITHOUT REG EX
+
+ var phoneFormatted = function(submission) {
+  var counter;
+  var current;
+  var submissionLength = submission.length;
+  var numberArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  var separator = '-';
+  if (typeof submission !== 'string' || submissionLength !== 8) {
+    return false;
+  }
+  for (counter = 0; counter < submissionLength; counter++) {
+    current = submission[counter];
+    if (numberArray.indexOf(current) === -1) {
+      if (counter !== 3) {
+        return false;
+      } else if (current !== separator) {
+         return false;
+      }
+    }
+  }
+  return true;
+};
+
+console.log(phoneFormatted("1234567"));
+// false
+console.log(phoneFormatted("123-4567"));
+// true
+
+//WITH REGEX
+
+var phoneFormattedRegex = function(submission) {
+  return /^\d{3}-\d{4}/.test(submission);
+}
+
+console.log(phoneFormattedRegex("1234567"));
+// false
+console.log(phoneFormattedRegex("123-4567"));
+// true
+
+//HOW REGEX WORKS
+//the pattern matched by a regular expression is defined by squences of literal characters and metacharacters
+
+// /.it/ - matches words like "kitten", or "mitten" will not match "it". must have a character before it as specified by the '.'
+
+// '.' is a meta character that represents an unknown character. its the "match almost any character" meta character
+// - for example, the metacharacter represented by a period adds a placeholder to a regular expression pattern that matches almost any character, except a line break
+
+// 'it' is a literal character
+//this expression says, "match any letter/number followed by an 'it' "
+
+//REGULAR EXPRESSIONS IN JAVASCRIPT
+//in javascript, regular expressions are a type of object, just like a string or a numnber
+//regex objects can be constructed using native javascript
+//rexexp constuctor if you need to create one from dynamic values
+
+var itMatches = new RegExp('it');
+
+//or by writing the sequence out between slashes if the value can be defined before runtime
+
